@@ -222,6 +222,14 @@ class Player {
     return this._equipped;
   }
 
+  getPack() {
+    return this._pack;
+  }
+
+  getMaxHealth() {
+    return this._maxHealth;
+  }
+
 
 /**
  * Player Class Method => checkPack()
@@ -234,6 +242,19 @@ class Player {
  *
  * @name checkPack
  */
+
+  checkPack() {
+    let pack = this.getPack();
+
+    if (pack.length === 0) {
+      console.log("Despite the size of your sack, it appears to hold no items.");
+    } else {
+      for (let i = 0; i < pack.length; i++) {
+        console.log(pack[i]);
+      }
+    }
+  }
+
 
 
 /**

@@ -314,6 +314,19 @@ class Player {
  * @return {boolean} true/false     Whether player was able to remove item from pack.
  */
 
+  discardItem(item) {
+    let pack = this.getPack();
+    let indexOfItem = pack.indexOf(item);
+
+    if (indexOfItem === -1) {
+      console.log("Error: Item doesn't exist in inventory.");
+      return false;
+    }
+
+    this.pack = pack.splice(indexOfItem, 1);
+    console.log(`${this.name}'s ${item} was thrown into the void!`);
+    return true;
+  }
 
 /**
  * Player Class Method => equip(itemToEquip)

@@ -612,8 +612,6 @@ class FastZombie extends Zombie {
   }
 }
 
-
-
 /**
  * Class => StrongZombie(health, strength, speed)
  * -----------------------------
@@ -635,7 +633,11 @@ class FastZombie extends Zombie {
  * -----------------------------
  */
 
-
+class StrongZombie extends Zombie {
+  constructor(health, strength, speed) {
+    super(health, strength, speed);
+  }
+}
 
 /**
  * Class => RangedZombie(health, strength, speed)
@@ -658,7 +660,11 @@ class FastZombie extends Zombie {
  * -----------------------------
  */
 
-
+class RangedZombie extends Zombie {
+  constructor(health, strength, speed) {
+    super(health, strength, speed);
+  }
+}
 
 /**
  * Class => ExplodingZombie(health, strength, speed)
@@ -681,8 +687,11 @@ class FastZombie extends Zombie {
  * -----------------------------
  */
 
-
-
+class ExplodingZombie extends Zombie {
+  constructor(health, strength, speed) {
+    super(health, strength, speed);
+  }
+}
 
 /**
  * Sample run.

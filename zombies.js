@@ -432,6 +432,41 @@ class Player {
  * @param {Item/Weapon/Food} item   The item to use.
  */
 
+  useItem(item) {
+    let pack = this.getPack();
+    let indexOfItem = pack.indexOf(item);
+    let isWeapon = null;
+    let isFood = null;
+
+    if (indexOfItem === -1) {
+      console.log("Only items from the pack can be used!");
+      return false;
+    }
+
+    typeChecker.isInventoryItem(item);
+
+    try {
+      isWeapon = typeChecker.isWeapon(item);
+    }
+    catch (error) {
+      isWeapon = false;
+    }
+
+    try {
+      isFood = typeChecker.isFood(item);
+    }
+    catch (error) {
+      isFood = false;
+    }
+
+    if (isWeapon) {
+      this.equip(item);
+    }
+    else if (isFood) {
+      this.eat(item);
+    }
+
+  }
 
 /**
  * Player Class Method => equippedWith()

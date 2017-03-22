@@ -332,7 +332,7 @@ class Player {
     }
 
     this.pack = pack.splice(indexOfItem, 1);
-    console.log(`${this.name}'s ${item} was thrown into the void!`);
+    console.log(`${this.name}'s ${item.name} was thrown into the void!`);
     return true;
   }
 

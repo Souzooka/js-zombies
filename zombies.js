@@ -26,45 +26,38 @@ class Validator {
   }
 
   isArray(value) {
-    if (value.constructor === Array) {
+    if (value instanceof Array) {
       return true;
     }
     throw new TypeError('Cannot assign type ' + typeof value + ' to variable. Variable must be an array.');
   }
 
   isObject(value) {
-    if (typeof value === 'object' && value.constructor !== Array) {
+    if (typeof value === 'object' && !(value instanceof Array)) {
       return true;
     }
     throw new TypeError('Cannot assign type ' + typeof value + ' to variable. Variable must be an object.');
   }
 
   isWeapon(value) {
-    if (typeof value === 'object' && value.constructor === Weapon) {
+    if (value instanceof Weapon) {
       return true;
     }
     throw new TypeError('Cannot assign type ' + value.constructor + " " + typeof value + ' to variable. Variable must be a Weapon object.');
   }
 
   isFood(value) {
-    if (typeof value === 'object' && value.constructor === Food) {
+    if (value instanceof Food) {
       return true;
     }
     throw new TypeError('Cannot assign type ' + value.constructor + " " + typeof value + ' to variable. Variable must be a Food object.');
   }
 
   isItem(value) {
-    if (typeof value === 'object' && value.constructor === Item) {
+    if (value instanceof Item) {
       return true;
     }
     throw new TypeError('Cannot assign type ' + value.constructor + " " + typeof value + ' to variable. Variable must be an Item object.');
-  }
-
-  isInventoryItem(value) {
-    if (typeof value === 'object' && value instanceof Item) {
-      return true;
-    }
-    throw new TypeError('Cannot assign type ' + value.constructor + " " + typeof value + ' to variable. Variable must be an inventory item.');
   }
 }
 
@@ -307,7 +300,7 @@ class Player {
       console.log("Your pack cannot store any more items!");
       return false;
     } else {
-      typeChecker.isInventoryItem(item);
+      typeChecker.isItem(item);
       pack.push(item);
       return true;
     }
@@ -479,7 +472,7 @@ class Player {
       return false;
     }
 
-    typeChecker.isInventoryItem(item);
+    typeChecker.isItem(item);
 
     switch (itemType) {
       case Weapon:

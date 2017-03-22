@@ -382,7 +382,7 @@ class Player {
     let indexOfWeapon = pack.indexOf(weapon);
 
     if (!this.isAlive) {
-      console.log("Zombies can't use weapons, silly. If you're immune, then you still can't use weapons while dead. Sorry!");
+      console.log(`${this.name} tried equipping a weapon while dead, but zombies can't equip weapons. If ${this.name} was immune, they can't do anything any more. Bummer.`);
       return false;
     }
 
@@ -426,7 +426,7 @@ class Player {
     let indexOfFood = pack.indexOf(food);
 
     if (!this.isAlive) {
-      console.log("You can only eat brains now. Unless, again, you're immune. Then you can't eat anything anymore. That sucks.");
+      console.log(`${this.name} can only eat brains now. Unless, again, ${this.name}'s immune. Then ${this.name} can't eat anything any more. That sucks.`);
       return false;
     }
 
@@ -470,7 +470,7 @@ class Player {
     let isFood = null;
 
     if (!this.isAlive) {
-      console.log("While looking through your pack, you remembered that you were no longer alive and stopped your search.");
+      console.log(this.name + " remembered that they were no longer alive and stopped searching through their pack.");
       return false;
     }
 

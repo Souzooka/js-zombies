@@ -574,8 +574,12 @@ class Zombie {
     return this._strength;
   }
 
-  set health(health) {
-    this._health = health;
+  get speed() {
+    return this._speed;
+  }
+
+  get isAlive() {
+    return this._isAlive;
   }
 
 }

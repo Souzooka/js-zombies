@@ -467,8 +467,7 @@ class Player {
   useItem(item) {
     let pack = this.getPack();
     let indexOfItem = pack.indexOf(item);
-    let isWeapon = null;
-    let isFood = null;
+    let itemType = item.constructor;
 
     if (!this.isAlive) {
       console.log(this.name + " remembered that they were no longer alive and stopped searching through their pack.");
@@ -482,25 +481,15 @@ class Player {
 
     typeChecker.isInventoryItem(item);
 
-    try {
-      isWeapon = typeChecker.isWeapon(item);
-    }
-    catch (error) {
-      isWeapon = false;
-    }
-
-    try {
-      isFood = typeChecker.isFood(item);
-    }
-    catch (error) {
-      isFood = false;
-    }
-
-    if (isWeapon) {
-      this.equip(item);
-    }
-    else if (isFood) {
-      this.eat(item);
+    switch (itemType) {
+      case Weapon:
+        this.equip(item);
+        break;
+      case Food:
+        this.eat(item);
+        break;
+      default:
+        break;
     }
 
   }

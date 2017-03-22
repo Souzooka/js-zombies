@@ -60,7 +60,7 @@ class Validator {
   }
 
   isInventoryItem(value) {
-    if (typeof value === 'object' && (value instanceof Item)) {
+    if (typeof value === 'object' && value instanceof Item) {
       return true;
     }
     throw new TypeError('Cannot assign type ' + value.constructor + " " + typeof value + ' to variable. Variable must be an inventory item.');
@@ -150,6 +150,7 @@ class Weapon extends Item {
 class Food extends Item {
   constructor(name, energy) {
     super(name);
+    typeChecker.isNumber(energy);
     this._energy = energy;
   }
 
@@ -180,6 +181,46 @@ class Food extends Item {
  * @property {method} getPack              Returns private variable `pack`.
  * @property {method} getMaxHealth         Returns private variable `maxHealth`.
  */
+
+class Player {
+  constructor(name, health, strength, speed) {
+    typeChecker.isString(name);
+    typeChecker.isNumber(health);
+    typeChecker.isNumber(strength);
+    typeChecker.isNumber(speed);
+    this._name = name;
+    this._health = health;
+    this._maxHealth = health;
+    this._strength = strength;
+    this._speed = speed;
+    this._pack = [];
+    this._isAlive = true;
+    this._equipped = false;
+  }
+
+  get name() {
+    return this._name;
+  }
+
+  get health() {
+    return this._health;
+  }
+
+  get strength() {
+    return this._strength;
+  }
+
+  get speed() {
+    return this._speed;
+  }
+
+  get isAlive() {
+    return this._isAlive;
+  }
+
+  get equipped() {
+    return this._equipped;
+  }
 
 
 /**
@@ -310,6 +351,7 @@ class Food extends Item {
  * @return {string/boolean}   Weapon name or false if nothing is equipped.
  */
 
+}
 
 /**
  * Class => Zombie(health, strength, speed)

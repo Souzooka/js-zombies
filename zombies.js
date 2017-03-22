@@ -41,7 +41,17 @@
  * -----------------------------
  */
 
+class Weapon extends Item {
+  constructor(name, damage) {
+    super(name);
+    this._damage = damage;
+  }
 
+  get damage() {
+    return this._damage;
+  }
+
+}
 
 /**
  * Class => Food(name, energy)

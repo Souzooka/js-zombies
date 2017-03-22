@@ -482,6 +482,14 @@ class Player {
  * @return {string/boolean}   Weapon name or false if nothing is equipped.
  */
 
+  equippedWith() {
+    if (this._equipped) {
+      return this._equipped.name;
+    } else {
+      return false;
+    }
+  }
+
 }
 
 /**

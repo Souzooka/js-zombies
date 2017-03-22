@@ -208,6 +208,12 @@ class Player {
 
   set health(health) {
     this._health = health;
+
+    if (this._health <= 0) {
+      this._isAlive = false;
+    } else {
+      this._isAlive = true;
+    }
   }
 
   get strength() {
@@ -254,6 +260,11 @@ class Player {
   checkPack() {
     let pack = this.getPack();
 
+    if (!this.isAlive) {
+      console.log("Those who have died unfortunately cannot open their packs.");
+      return false;
+    }
+
     if (pack.length === 0) {
       console.log("Despite the size of your sack, you appear to hold no items.");
     } else {
@@ -285,6 +296,11 @@ class Player {
 
   takeItem(item) {
     let pack = this.getPack();
+
+    if (!this.isAlive) {
+      console.log("You are dead, not big soup rice.");
+      return false;
+    }
 
     if (pack.length >= 3) {
       console.log("Your pack cannot store any more items!");
@@ -326,6 +342,11 @@ class Player {
     let pack = this.getPack();
     let indexOfItem = pack.indexOf(item);
 
+    if (!this.isAlive) {
+      console.log("Losing some weight won't bring you back from the dead.");
+      return false;
+    }
+
     if (indexOfItem === -1) {
       console.log("Error: Item doesn't exist in inventory.");
       return false;
@@ -359,6 +380,11 @@ class Player {
   equip(weapon) {
     let pack = this.getPack();
     let indexOfWeapon = pack.indexOf(weapon);
+
+    if (!this.isAlive) {
+      console.log("Zombies can't use weapons, silly. If you're immune, then you still can't use weapons while dead. Sorry!");
+      return false;
+    }
 
     if (indexOfWeapon === -1) {
       console.log("Only items from the pack can be equipped!");
@@ -399,6 +425,11 @@ class Player {
     let pack = this.getPack();
     let indexOfFood = pack.indexOf(food);
 
+    if (!this.isAlive) {
+      console.log("You can only eat brains now. Unless, again, you're immune. Then you can't eat anything anymore. That sucks.");
+      return false;
+    }
+
     if (indexOfFood === -1) {
       console.log("Only items from the pack can be consumed!");
       return false;
@@ -437,6 +468,11 @@ class Player {
     let indexOfItem = pack.indexOf(item);
     let isWeapon = null;
     let isFood = null;
+
+    if (!this.isAlive) {
+      console.log("While looking through your pack, you remembered that you were no longer alive and stopped your search.");
+      return false;
+    }
 
     if (indexOfItem === -1) {
       console.log("Only items from the pack can be used!");
@@ -507,6 +543,42 @@ class Player {
  * @property {number} speed
  * @property {boolean} isAlive      Default value should be `true`.
  */
+
+class Zombie {
+  constructor(health, strength, speed) {
+    typeChecker.isNumber(health);
+    typeChecker.isNumber(strength);
+    typeChecker.isNumber(speed);
+    this._health = health;
+    this._maxHealth = health;
+    this._strength = strength;
+    this._speed = speed;
+    this._isAlive = true; // But is it really?
+  }
+
+  get health() {
+    return this._health;
+  }
+
+  set health(health) {
+    this._health = health;
+
+    if (this._health <= 0) {
+      this._isAlive = false;
+    } else {
+      this._isAlive = true;
+    }
+  }
+
+  get strength() {
+    return this._strength;
+  }
+
+  set health(health) {
+    this._health = health;
+  }
+
+}
 
 
 /**

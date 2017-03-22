@@ -60,7 +60,7 @@ class Validator {
   }
 
   isInventoryItem(value) {
-    if (typeof value === 'object' && (value.constructor === Item || value.constructor === Weapon || value.constructor === Food)) {
+    if (typeof value === 'object' && (value instanceof Item)) {
       return true;
     }
     throw new TypeError('Cannot assign type ' + value.constructor + " " + typeof value + ' to variable. Variable must be an inventory item.');

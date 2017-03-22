@@ -123,7 +123,6 @@ class Weapon extends Item {
   get damage() {
     return this._damage;
   }
-
 }
 
 /**
@@ -148,6 +147,16 @@ class Weapon extends Item {
  * -----------------------------
  */
 
+class Food extends Item {
+  constructor(name, energy) {
+    super(name);
+    this._energy = energy;
+  }
+
+  get energy() {
+    return this._energy;
+  }
+}
 
 
 /**

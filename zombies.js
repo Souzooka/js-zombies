@@ -67,7 +67,7 @@ class Validator {
   }
 }
 
-let typeChecker = new Validator();
+const typeChecker = new Validator();
 
 /**
  * Class => Item(name)

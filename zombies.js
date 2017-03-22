@@ -1,3 +1,32 @@
+class Validator {
+  constructor() {
+
+  }
+
+  isNumber(value) {
+    if (typeof value === 'number') {
+      return true;
+    }
+    throw new TypeError('Cannot assign type ' + typeof value + ' to variable. Variable must be a number.');
+  }
+
+  isString(value) {
+    if (typeof value === 'string') {
+      return true;
+    }
+    throw new TypeError('Cannot assign type ' + typeof value + ' to variable. Variable must be a string.');
+  }
+
+  isBoolean(value) {
+    if (typeof value === 'boolean') {
+      return true;
+    }
+    throw new TypeError('Cannot assign type ' + typeof value + ' to variable. Variable must be a boolean value.');
+  }
+}
+
+let typeChecker = new Validator();
+
 /**
  * Class => Item(name)
  * -----------------------------
@@ -10,6 +39,7 @@
 
  class Item {
   constructor(name) {
+    typeChecker.isString(name);
     this._name = name;
   }
 
@@ -44,6 +74,7 @@
 class Weapon extends Item {
   constructor(name, damage) {
     super(name);
+    typeChecker.isNumber(damage);
     this._damage = damage;
   }
 

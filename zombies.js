@@ -206,6 +206,10 @@ class Player {
     return this._health;
   }
 
+  set health(health) {
+    this._health = health;
+  }
+
   get strength() {
     return this._strength;
   }
@@ -220,6 +224,10 @@ class Player {
 
   get equipped() {
     return this._equipped;
+  }
+
+  set equipped(item) {
+    this._equipped = item;
   }
 
   getPack() {
@@ -348,6 +356,25 @@ class Player {
  * @param {Weapon} itemToEquip  The weapon item to equip.
  */
 
+  equip(weapon) {
+    let pack = this.getPack();
+    let indexOfWeapon = pack.indexOf(weapon);
+
+    if (indexOfWeapon === -1) {
+      console.log("Only items from the pack can be equipped!");
+      return false;
+    }
+
+    typeChecker.isWeapon(weapon);
+
+    if (!this.equipped) {
+      this.equipped = pack.splice(indexOfWeapon, 1)[0];
+    } else {
+      this.equipped = pack.splice(indexOfWeapon, 1, this.equipped)[0];
+    }
+
+  }
+
 
 /**
  * Player Class Method => eat(itemToEat)
@@ -368,6 +395,29 @@ class Player {
  * @param {Food} itemToEat  The food item to eat.
  */
 
+  eat(food) {
+    let pack = this.getPack();
+    let indexOfFood = pack.indexOf(food);
+
+    if (indexOfFood === -1) {
+      console.log("Only items from the pack can be consumed!");
+      return false;
+    }
+
+    // stop breaking my code tests
+    try {
+      typeChecker.isFood(food);
+    }
+    catch (error) {
+      return false;
+    }
+
+    this.health += pack.splice(indexOfFood, 1)[0].energy;
+
+    if (this.health > this.getMaxHealth()) {
+      this.health = this.getMaxHealth();
+    }
+  }
 
 /**
  * Player Class Method => useItem(item)

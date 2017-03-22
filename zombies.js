@@ -23,6 +23,48 @@ class Validator {
     }
     throw new TypeError('Cannot assign type ' + typeof value + ' to variable. Variable must be a boolean value.');
   }
+
+  isArray(value) {
+    if (value.constructor === Array) {
+      return true;
+    }
+    throw new TypeError('Cannot assign type ' + typeof value + ' to variable. Variable must be an array.');
+  }
+
+  isObject(value) {
+    if (typeof value === 'object' && value.constructor !== Array) {
+      return true;
+    }
+    throw new TypeError('Cannot assign type ' + typeof value + ' to variable. Variable must be an object.');
+  }
+
+  isWeapon(value) {
+    if (typeof value === 'object' && value.constructor === Weapon) {
+      return true;
+    }
+    throw new TypeError('Cannot assign type ' + value.constructor + " " + typeof value + ' to variable. Variable must be a Weapon object.');
+  }
+
+  isFood(value) {
+    if (typeof value === 'object' && value.constructor === Food) {
+      return true;
+    }
+    throw new TypeError('Cannot assign type ' + value.constructor + " " + typeof value + ' to variable. Variable must be a Food object.');
+  }
+
+  isItem(value) {
+    if (typeof value === 'object' && value.constructor === Item) {
+      return true;
+    }
+    throw new TypeError('Cannot assign type ' + value.constructor + " " + typeof value + ' to variable. Variable must be an Item object.');
+  }
+
+  isInventoryItem(value) {
+    if (typeof value === 'object' && (value.constructor === Item || value.constructor === Weapon || value.constructor === Food)) {
+      return true;
+    }
+    throw new TypeError('Cannot assign type ' + value.constructor + " " + typeof value + ' to variable. Variable must be an inventory item.');
+  }
 }
 
 let typeChecker = new Validator();
